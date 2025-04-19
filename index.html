@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casey McCollum - Video Producer and Researcher</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Using Inter as a close alternative to Neue Haas Grotesk, and EB Garamond for Garamond -->
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #137547;
+            --background-color: #fbfefd;
+            --text-color: #333333;
+            --sans-font: 'Inter', sans-serif;
+            --serif-font: 'EB Garamond', serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--sans-font);
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Grid Background - now with light grey lines instead of white */
+        .grid-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -2;
+        }
+
+        /* Texture Overlay - increased opacity to 0.2 */
+        .texture-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('images/texture.png'); /* You'll need to create this */
+            opacity: 0.2;
+            z-index: -1;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            padding: 1.5rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        header.hidden {
+            transform: translateY(-100%);
+        }
+
+        .logo {
+            font-family: var(--sans-font);
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: opacity 0.3s;
+        }
+
+        nav ul li a:hover {
+            opacity: 0.8;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 7rem;
+            padding: 2rem;
+            max-width: 1440px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+
+        /* Shapes Container - Repositioned behind the image */
+        .shapes-container {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 500px;
+            overflow: visible;
+            z-index: -1;
+        }
+
+        .triangle1 {
+            position: absolute;
+            top: -5%;
+            right: 65%;
+            width: 0;
+            height: 0;
+            border-left: 80px solid transparent;
+            border-right: 80px solid transparent;
+            border-bottom: 150px solid var(--primary-color);
+            transform: rotate(30deg);
+        }
+
+        .triangle2 {
+            position: absolute;
+            top: 70%;
+            left: 95%;
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 100px solid var(--primary-color);
+            transform: rotate(-45deg);
+        }
+
+        .circle {
+            position: absolute;
+            bottom: 10%;
+            left: 10%;
+            width: 200px;
+            height: 200px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+        }
+
+        /* Intro Section */
+        .intro-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5rem;
+            padding: 0 1rem;
+            position: relative;
+        }
+
+        .intro-text {
+            width: 45%;
+        }
+
+        .intro-text h1 {
+            font-family: var(--serif-font);
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        .intro-image {
+            width: 45%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .intro-image img {
+            width: 100%;
+            border-radius: 4px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Mission Statement */
+        .mission-statement {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 5rem;
+            padding: 0 1rem;
+        }
+
+        .mission-statement p {
+            font-family: var(--serif-font);
+            font-size: 1.8rem;
+            line-height: 1.4;
+            color: var(--primary-color);
+        }
+
+        /* Experience Cards */
+        .experience-section {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5rem;
+            padding: 0 1rem;
+            gap: 2rem;
+        }
+
+        .experience-card {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .experience-card h2 {
+            font-family: var(--serif-font);
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+            font-weight: 500;
+        }
+
+        .experience-card .btn {
+            background: none;
+            border: 2px solid white;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            text-align: center;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 2rem;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .experience-card .btn:hover {
+            background-color: white;
+            color: var(--primary-color);
+        }
+
+        /* Connect Section */
+        .connect-section {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 0 1rem;
+        }
+
+        .connect-section h2 {
+            font-family: var(--serif-font);
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .social-links a {
+            background-color: var(--primary-color);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px);
+            background-color: #0e5c38;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .intro-section, .experience-section {
+                flex-direction: column;
+            }
+
+            .intro-text, .intro-image {
+                width: 100%;
+                margin-bottom: 2rem;
+            }
+
+            .mission-statement p {
+                font-size: 1.5rem;
+            }
+
+            .shapes-container {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            nav ul li {
+                margin-left: 1rem;
+            }
+
+            nav ul li a {
+                font-size: 0.9rem;
+            }
+
+            .experience-card {
+                padding: 1.5rem;
+            }
+
+            .experience-card h2 {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            nav ul li a {
+                font-size: 0.8rem;
+            }
+
+            .mission-statement p {
+                font-size: 1.2rem;
+            }
+
+            .social-links a {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Grid Background -->
+    <div class="grid-background"></div>
+    
+    <!-- Texture Overlay -->
+    <div class="texture-overlay"></div>
+    
+    <!-- Header -->
+    <header id="header">
+        <a href="index.html" class="logo">Casey McCollum</a>
+        <nav>
+            <ul>
+                <li><a href="about.html">About</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <!-- Intro Section -->
+        <section class="intro-section">
+            <!-- Geometric Shapes Container - Now positioned behind the image -->
+            <div class="shapes-container">
+                <div class="triangle1"></div>
+                <div class="triangle2"></div>
+                <div class="circle"></div>
+            </div>
+            
+            <div class="intro-text">
+                <h1>Video producer and researcher based in the California Bay Area & Denver, Colorado.</h1>
+            </div>
+            <div class="intro-image">
+                <img src="images/profile-photo.jpg" alt="Casey McCollum taking photos in a snowy mountain landscape">
+            </div>
+        </section>
+        
+        <!-- Mission Statement -->
+        <section class="mission-statement">
+            <p>I'm passionate about making complex issues accessible and helping firms navigate brand strategy and marketing across cultural contexts.</p>
+        </section>
+        
+        <!-- Experience Cards -->
+        <section class="experience-section">
+            <div class="experience-card">
+                <h2>M.A. in international relations with a focus on East Asian & Latin American development</h2>
+                <a href="written-work.html" class="btn">View My Written Work</a>
+            </div>
+            <div class="experience-card">
+                <h2>B.A. in media production with an emphasis on documentary film and storytelling</h2>
+                <a href="visual-work.html" class="btn">View My Visual Work</a>
+            </div>
+        </section>
+        
+        <!-- Connect Section -->
+        <section class="connect-section">
+            <h2>Connect with Casey</h2>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/caseymcc" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://substack.com/@yourprofile" aria-label="Substack"><i class="fas fa-newspaper"></i></a>
+                <a href="https://behance.net/yourprofile" aria-label="Behance"><i class="fab fa-behance"></i></a>
+                <a href="https://vimeo.com/yourprofile" aria-label="Vimeo"><i class="fab fa-vimeo-v"></i></a>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Casey McCollum</p>
+    </footer>
+    
+    <script>
+        // Header hide on scroll down, show on scroll up
+        let lastScrollTop = 0;
+        const header = document.getElementById('header');
+        
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                // Scroll down
+                header.classList.add('hidden');
+            } else {
+                // Scroll up
+                header.classList.remove('hidden');
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+    </script>
+</body>
+</html>
