@@ -22,6 +22,23 @@ document.addEventListener('DOMContentLoaded', function() {
         lastScrollTop = scrollTop;
     });
 
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('mobileMenuToggle');
+    const nav = document.querySelector('nav');
+    
+    if (menuToggle) {
+        menuToggle.addEventListener('click', function() {
+            nav.classList.toggle('active');
+        });
+        
+        // Close menu when clicking elsewhere
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('header')) {
+                nav.classList.remove('active');
+            }
+        });
+    }
+
     // Portfolio filtering system (only on portfolio page)
     const portfolioCategories = document.querySelectorAll('.portfolio-category');
     if (portfolioCategories.length > 0) {
