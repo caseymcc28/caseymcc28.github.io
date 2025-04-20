@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Casey McCollum</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- External CSS files -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/portfolio.css">
+</head>
+<body>
+    <!-- Grid Background -->
+    <div class="grid-background"></div>
+    
+    <!-- Texture Overlay -->
+    <div class="texture-overlay"></div>
+    
+    <!-- Header -->
+    <header id="header">
+        <a href="index.html" class="logo">Casey McCollum</a>
+        <nav>
+            <ul>
+                <li><a href="about.html">About</a></li>
+                <li><a href="portfolio.html" class="active">Portfolio</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <!-- Portfolio Header -->
+        <section class="portfolio-header">
+            <h1>My Portfolio</h1>
+            <p>A collection of my work in video production, photography, design, and written research across various industries and cultural contexts.</p>
+        </section>
+        
+        <!-- Portfolio Categories -->
+        <div class="portfolio-categories">
+            <div class="portfolio-category active" data-filter="all">ALL</div>
+            <div class="portfolio-category" data-filter="written">WRITTEN</div>
+            <div class="portfolio-category" data-filter="video">VIDEO</div>
+            <div class="portfolio-category" data-filter="photo">PHOTO</div>
+            <div class="portfolio-category" data-filter="design">DESIGN</div>
+        </div>
+        
+        <!-- Featured Project - Only shown in ALL category -->
+        <section class="featured-project" data-category="all video">
+            <div class="featured-header">FEATURED PROJECT</div>
+            <div class="featured-content">
+                <div class="featured-video">
+                    <div class="responsive-embed">
+                        <iframe src="https://player.vimeo.com/video/899089915" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="featured-details">
+                    <h2>Agricultural Innovations Documentary</h2>
+                    <span class="category-tag">VIDEO</span>
+                    <p>This 30-minute documentary explores sustainable farming practices in Vietnam and Thailand, showcasing how traditional techniques are being combined with modern technology to address food security challenges in Southeast Asia.</p>
+                    <a href="projects/agricultural-innovations.html" class="view-project-btn">View Full Project</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Portfolio Grid -->
+        <div class="portfolio-grid">
+            <!-- Video Item 1 -->
+            <div class="portfolio-item" data-category="video">
+                <div class="portfolio-item-image video-thumbnail">
+                    <img src="images/portfolio-video-1.jpg" alt="Documentary film scene in rural Asia">
+                </div>
+                <div class="portfolio-item-content">
+                    <h3>Agricultural Innovations in Southeast Asia</h3>
+                    <div class="category">VIDEO</div>
+                    <p>A 30-minute documentary exploring sustainable farming practices in Vietnam and Thailand.</p>
+                    <a href="projects/agricultural-innovations.html" class="view-project">View Project</a>
+                </div>
+            </div>
+            
+            <!-- Written Item 1 -->
+            <div class="portfolio-item" data-category="written">
+                <div class="portfolio-item-image">
+                    <img src="images/portfolio-written-1.jpg" alt="Policy paper header image">
+                </div>
+                <div class="portfolio-item-content">
+                    <h3>Urban Development in Latin American Economies</h3>
+                    <div class="category">WRITTEN</div>
+                    <p>Analysis of urban planning initiatives in rapidly developing Latin American cities.</p>
+                    <a href="projects/urban-development.html" class="view-project">View Project</a>
+                </div>
+            </div>
+            
+            <!-- Video Item 2 -->
+            <div class="portfolio-item" data-category="video">
+                <div class="portfolio-item-image video-thumbnail">
+                    <img src="images/portfolio-video-2.jpg" alt="Corporate interview setup">
+                </div>
+                <div class="portfolio-item-content">
+                    <h3>Global Tech Leadership Series</h3>
+                    <div class="category">VIDEO</div>
+                    <p>Interview series with tech executives on cross-cultural management strategies.</p>
+                    <a href="projects/tech-leadership.html" class="view-project">View Project</a>
+                </div>
+            </div>
+            
+            <!-- Written Item 2 -->
+            <div class="portfolio-item" data-category="written">
+                <div class="portfolio-item-image">
+                    <img src="images/portfolio-written-2.jpg" alt="Journal publication cover">
+                </div>
+                <div class="portfolio-item-content">
+                    <h3>Media Representation in International Trade</h3>
+                    <div class="category">WRITTEN</div>
+                    <p>Published research on how media narratives influence international trade negotiations.</p>
+                    <a href="projects/media-representation.html" class="view-project">View Project</a>
+                </div>
+            </div>
+            
+            <!-- Photo Item 1 -->
+            <div class="portfolio-item" data-category="photo">
+                <div class="portfolio-item-image">
+                    <img src="images/portfolio-photo-1.jpg" alt="Photography series of urban landscapes">
+                </div>
+                <div class="portfolio-item-content">
+                    <h3>Urban Contrasts</h3>
+                    <div class="category">PHOTO</div>
+                    <p>Photography series exploring the contrasts between traditional and modern architecture.</p>
+                    <a href="projects/urban-contrasts.html" class="view-project">View Project</a>
+                </div>
+            </div>
+            
+            <!-- Design Item 1 -->
+            <div class="portfolio-item" data-category="design">
+                <div class="portfolio-item-image">
+                    <img src="images/portfolio-design-1.jpg" alt="Brand identity design">
+                </div>
+                <div class="portfolio-item-content">
+                    <h3>EcoTech Brand Identity</h3>
+                    <div class="category">DESIGN</div>
+                    <p>Complete brand identity design for a sustainable technology startup.</p>
+                    <a href="projects/ecotech-identity.html" class="view-project">View Project</a>
+                </div>
+            </div>
+            
+            <!-- Video Item 3 -->
+            <div class="portfolio-item" data-category="video">
+                <div class="portfolio-item-image video-thumbnail">
+                    <img src="images/portfolio-video-3.jpg" alt="Brand campaign visuals">
+                </div>
+                <div class="portfolio-item-content">
+                    <h3>Sustainable Fashion Campaign</h3>
+                    <div class="category">VIDEO</div>
+                    <p>Video series highlighting a fashion brand's sustainability initiatives across global markets.</p>
+                    <a href="projects/sustainable-fashion.html" class="view-project">View Project</a>
+                </div>
+            </div>
+            
+            <!-- Written Item 3 -->
+            <div class="portfolio-item" data-category="written">
+                <div class="portfolio-item-image">
+                    <img src="images/portfolio-written-3.jpg" alt="Policy brief cover">
+                </div>
+                <div class="portfolio-item-content">
+                    <h3>Cross-Border Climate Initiatives</h3>
+                    <div class="category">WRITTEN</div>
+                    <p>Analysis of multinational climate policies and their implementation challenges.</p>
+                    <a href="projects/climate-initiatives.html" class="view-project">View Project</a>
+                </div>
+            </div>
+            
+            <!-- Photo Item 2 -->
+            <div class="portfolio-item" data-category="photo">
+                <div class="portfolio-item-image">
+                    <img src="images/portfolio-photo-2.jpg" alt="Cultural portrait series">
+                </div>
+                <div class="portfolio-item-content">
+                    <h3>Faces of Tradition</h3>
+                    <div class="category">PHOTO</div>
+                    <p>Portrait series documenting cultural traditions across generations in rural communities.</p>
+                    <a href="projects/faces-tradition.html" class="view-project">View Project</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Casey McCollum</p>
+    </footer>
+    
+    <!-- External JavaScript file -->
+    <script src="js/scripts.js"></script>
+</body>
+</html>

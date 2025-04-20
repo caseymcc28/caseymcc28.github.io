@@ -1,0 +1,151 @@
+/* Main Styles for Casey McCollum's Website */
+
+:root {
+    --primary-color: #137547;
+    --background-color: #fbfefd;
+    --text-color: #333333;
+    --sans-font: 'Inter', sans-serif;
+    --serif-font: 'EB Garamond', serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--sans-font);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* Grid Background */
+.grid-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: -2;
+}
+
+/* Texture Overlay */
+.texture-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/texture.png');
+    opacity: 0.2;
+    z-index: -1;
+}
+
+/* Header */
+header {
+    background-color: var(--primary-color);
+    padding: 1.5rem 2rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+header.hidden {
+    transform: translateY(-100%);
+}
+
+.logo {
+    font-family: var(--sans-font);
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 2rem;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: opacity 0.3s;
+}
+
+nav ul li a:hover {
+    opacity: 0.8;
+}
+
+nav ul li a.active {
+    border-bottom: 2px solid white;
+    padding-bottom: 3px;
+}
+
+/* Main Content */
+main {
+    margin-top: 7rem;
+    padding: 2rem;
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2rem 0;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Responsive Design - Shared Rules */
+@media (max-width: 992px) {
+    main {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 1rem;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+    }
+
+    nav ul li {
+        margin-left: 1rem;
+    }
+
+    nav ul li a {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    nav ul li a {
+        font-size: 0.8rem;
+    }
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Casey McCollum</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Using Inter as a close alternative to Neue Haas Grotesk, and EB Garamond for Garamond -->
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- External CSS files -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/contact.css">
+</head>
+<body>
+    <!-- Grid Background -->
+    <div class="grid-background"></div>
+    
+    <!-- Texture Overlay -->
+    <div class="texture-overlay"></div>
+    
+    <!-- Header -->
+    <header id="header">
+        <a href="index.html" class="logo">Casey McCollum</a>
+        <nav>
+            <ul>
+                <li><a href="about.html">About</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <!-- Contact Form Section -->
+        <section class="contact-section">
+            <!-- Decorative shapes -->
+            <div class="shape-circle"></div>
+            <div class="shape-triangle"></div>
+            
+            <div class="contact-header">
+                <h1>Get in Touch</h1>
+                <p>Have a project in mind or want to collaborate? Send me a message below.</p>
+            </div>
+            
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" class="form-textarea" required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+            
+            <!-- Success Message (Hidden by default) -->
+            <div class="form-success" id="formSuccess">
+                <h3>Message Sent!</h3>
+                <p>Thank you for reaching out. I'll get back to you as soon as possible.</p>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Casey McCollum</p>
+    </footer>
+    
+    <!-- External JavaScript file -->
+    <script src="js/scripts.js"></script>
+</body>
+</html>
