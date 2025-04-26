@@ -1,10 +1,11 @@
 /* Main Styles for Casey McCollum's Website */
 
 :root {
-    --primary-color: #116940;
+    --primary-color: #ED3D6D;
     --background-color: #fbfefd;
-    --text-color: #333333;
-    --sans-font: 'Inter', sans-serif;
+    --text-color: #1A1423;
+    --accent-text-color: #12355B;
+    --sans-font: 'neue-haas-grotesk-text', sans-serif; /* Updated from 'Inter' */
     --serif-font: 'EB Garamond', serif;
 }
 
@@ -49,7 +50,7 @@ body {
 
 /* Header */
 header {
-    background: linear-gradient(to right, #116940, #0B462B);
+    background: linear-gradient(to right, #ED3D6D, #BB113E);
     padding: 1.5rem 2rem;
     position: fixed;
     width: 100%;

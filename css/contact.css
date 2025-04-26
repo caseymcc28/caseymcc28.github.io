@@ -18,11 +18,35 @@
     margin-bottom: 2.5rem;
 }
 
+/* Lightning bolt icons */
 .contact-header h1 {
     font-family: var(--serif-font);
-    color: var(--primary-color);
+    color: var(--accent-text-color);
     font-size: 2.5rem;
     margin-bottom: 1rem;
+    display: inline-block;
+    padding: 0 3rem; /* Add padding for the icons */
+    position: relative;
+}
+
+.contact-header h1::before,
+.contact-header h1::after {
+    font-family: "Font Awesome 6 Free";
+    content: "\f0e7"; /* Lightning bolt icon */
+    font-weight: 900;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary-color);
+    font-size: 2rem;
+}
+
+.contact-header h1::before {
+    left: 0;
+}
+
+.contact-header h1::after {
+    right: 0;
 }
 
 .contact-header p {
@@ -84,7 +108,7 @@
 }
 
 .submit-btn:hover {
-    background-color: #0e5c38;
+    background-color: #BB113E;
 }
 
 /* Decorative Elements */
@@ -92,7 +116,7 @@
     position: absolute;
     width: 200px;
     height: 200px;
-    background-color: rgba(19, 117, 71, 0.05);
+    background-color: rgba(237, 61, 109, 0.05);
     border-radius: 50%;
     top: -100px;
     right: -100px;
@@ -105,7 +129,7 @@
     height: 0;
     border-left: 100px solid transparent;
     border-right: 100px solid transparent;
-    border-bottom: 200px solid rgba(19, 117, 71, 0.05);
+    border-bottom: 200px solid rgba(237, 61, 109, 0.05);
     bottom: -100px;
     left: -100px;
     z-index: 0;
@@ -117,13 +141,13 @@
     display: none;
     text-align: center;
     padding: 2rem;
-    background-color: rgba(19, 117, 71, 0.1);
+    background-color: rgba(237, 61, 109, 0.1);
     border-radius: 8px;
     margin-top: 2rem;
 }
 
 .form-success h3 {
-    color: var(--primary-color);
+    color: var(--accent-text-color);
     margin-bottom: 1rem;
     font-family: var(--serif-font);
     font-size: 1.5rem;
@@ -141,11 +165,23 @@
 
     .contact-header h1 {
         font-size: 2rem;
+        padding: 0 3rem; /* Reduce padding on smaller screens */
+    }
+    
+    .contact-header h1::before,
+    .contact-header h1::after {
+        font-size: 1.5rem; /* Smaller icons on smaller screens */
     }
 }
 
 @media (max-width: 576px) {
     .contact-header h1 {
         font-size: 1.8rem;
+        padding: 0 2.5rem; /* Further reduce padding on very small screens */
+    }
+    
+    .contact-header h1::before,
+    .contact-header h1::after {
+        font-size: 1.2rem; /* Even smaller icons on very small screens */
     }
 }
