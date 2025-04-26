@@ -57,6 +57,7 @@
 
 .intro-text {
     width: 45%;
+    margin-right: 2rem; /* Add spacing between text and image */
 }
 
 .intro-text h1 {
@@ -180,6 +181,36 @@
 .social-links a:hover {
     transform: translateY(-5px);
     background-color: #0e5c38;
+}
+
+.more-about-link {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.more-about-link a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: opacity 0.3s;
+    border-bottom: 1px solid var(--primary-color);
+    padding-bottom: 2px;
+}
+
+.more-about-link a:hover {
+    opacity: 0.8;
+}
+
+.more-about-link i {
+    margin-left: 5px;
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.more-about-link a:hover i {
+    transform: translateX(3px); /* Arrow moves slightly right on hover */
 }
 
 /* Responsive Design - Home Page Specific */

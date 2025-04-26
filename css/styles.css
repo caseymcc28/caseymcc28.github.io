@@ -1,7 +1,7 @@
 /* Main Styles for Casey McCollum's Website */
 
 :root {
-    --primary-color: #137547;
+    --primary-color: #116940;
     --background-color: #fbfefd;
     --text-color: #333333;
     --sans-font: 'Inter', sans-serif;
@@ -49,7 +49,7 @@ body {
 
 /* Header */
 header {
-    background-color: var(--primary-color);
+    background: linear-gradient(to right, #116940, #0B462B);
     padding: 1.5rem 2rem;
     position: fixed;
     width: 100%;

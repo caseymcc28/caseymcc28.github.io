@@ -82,6 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const modalClose = document.getElementById('modalClose');
         const modalTitle = document.getElementById('modalTitle');
         const modalCategory = document.getElementById('modalCategory');
+        const modalClientType = document.getElementById('modalClientType');
         const modalEmbed = document.getElementById('modalEmbed');
         const modalDescription = document.getElementById('modalDescription');
         const body = document.body;
@@ -95,11 +96,22 @@ document.addEventListener('DOMContentLoaded', function() {
                     const type = projectData.getAttribute('data-type');
                     const title = projectData.getAttribute('data-title');
                     const category = projectData.getAttribute('data-category');
+                    const clientType = projectData.getAttribute('data-client-type');
                     const description = projectData.getAttribute('data-description');
                     
                     // Set modal content
                     modalTitle.textContent = title;
                     modalCategory.textContent = category;
+                    modalClientType.textContent = clientType;
+                    
+                    // Add appropriate class to client type tag based on value
+                    modalClientType.className = 'modal-client-type';
+                    if (clientType === 'PERSONAL') {
+                        modalClientType.classList.add('personal');
+                    } else if (clientType === 'CLIENT') {
+                        modalClientType.classList.add('client');
+                    }
+                    
                     modalDescription.innerHTML = description.replace(/\n/g, '<br>');
                     
                     // Clear previous embed content
@@ -123,12 +135,30 @@ document.addEventListener('DOMContentLoaded', function() {
                             </div>
                         `;
                     } else if (type === 'design') {
-                        const imageUrl = projectData.getAttribute('data-embed');
-                        modalEmbed.innerHTML = `
-                            <div class="design-embed">
-                                <img src="${imageUrl}" alt="${title}">
-                            </div>
-                        `;
+                        // Check if this design item has a gallery of multiple images
+                        if (projectData.hasAttribute('data-gallery')) {
+                            // If it has a data-gallery attribute, create a gallery view
+                            const gallery = projectData.getAttribute('data-gallery').split(',');
+                            let galleryHTML = '<div class="image-gallery">';
+                            
+                            gallery.forEach((image, index) => {
+                                galleryHTML += `
+                                    <img src="${image}" alt="Design image ${index + 1}" class="gallery-image" onclick="expandImage(this)">
+                                `;
+                            });
+                            
+                            galleryHTML += '</div>';
+                            modalEmbed.innerHTML = galleryHTML;
+                            setTimeout(() => addGalleryNavigation(document.querySelector('.image-gallery')), 100);
+                        } else {
+                            // If no gallery, use the original single-image display
+                            const imageUrl = projectData.getAttribute('data-embed');
+                            modalEmbed.innerHTML = `
+                                <div class="design-embed">
+                                    <img src="${imageUrl}" alt="${title}">
+                                </div>
+                            `;
+                        }
                     } else if (type === 'photo') {
                         const gallery = projectData.getAttribute('data-gallery').split(',');
                         let galleryHTML = '<div class="image-gallery">';
@@ -141,6 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         
                         galleryHTML += '</div>';
                         modalEmbed.innerHTML = galleryHTML;
+                        setTimeout(() => addGalleryNavigation(document.querySelector('.image-gallery')), 100);
                     }
                     
                     // Open modal
@@ -159,11 +190,22 @@ document.addEventListener('DOMContentLoaded', function() {
                     const type = projectData.getAttribute('data-type');
                     const title = projectData.getAttribute('data-title');
                     const category = projectData.getAttribute('data-category');
+                    const clientType = projectData.getAttribute('data-client-type');
                     const description = projectData.getAttribute('data-description');
                     
                     // Set modal content
                     modalTitle.textContent = title;
                     modalCategory.textContent = category;
+                    modalClientType.textContent = clientType;
+                    
+                    // Add appropriate class to client type tag based on value
+                    modalClientType.className = 'modal-client-type';
+                    if (clientType === 'PERSONAL') {
+                        modalClientType.classList.add('personal');
+                    } else if (clientType === 'CLIENT') {
+                        modalClientType.classList.add('client');
+                    }
+                    
                     modalDescription.innerHTML = description.replace(/\n/g, '<br>');
                     
                     // Clear previous embed content
@@ -209,6 +251,81 @@ document.addEventListener('DOMContentLoaded', function() {
                 body.style.overflow = ''; // Restore scrolling
             }
         });
+
+        // Handle keyboard navigation within gallery
+        document.addEventListener('keydown', function(e) {
+            // Only respond if modal is active
+            if (!modal || !modal.classList.contains('active')) return;
+            
+            const gallery = modal.querySelector('.image-gallery');
+            if (!gallery) return;
+            
+            // Left arrow key
+            if (e.key === 'ArrowLeft') {
+                navigateGallery('prev');
+            }
+            // Right arrow key
+            else if (e.key === 'ArrowRight') {
+                navigateGallery('next');
+            }
+        });
+    }
+
+    // Function to navigate through gallery images
+    window.navigateGallery = function(direction) {
+        const gallery = document.querySelector('.image-gallery');
+        if (!gallery) return;
+        
+        const images = gallery.querySelectorAll('.gallery-image');
+        let currentIndex = -1;
+        
+        // Find currently active image
+        images.forEach((img, index) => {
+            if (img.classList.contains('active')) {
+                currentIndex = index;
+            }
+        });
+        
+        if (currentIndex === -1) return;
+        
+        // Calculate next index based on direction
+        let nextIndex;
+        if (direction === 'next') {
+            nextIndex = (currentIndex + 1) % images.length;
+        } else {
+            nextIndex = (currentIndex - 1 + images.length) % images.length;
+        }
+        
+        // Expand the next image
+        expandImage(images[nextIndex]);
+    }
+
+    // Function to add navigation arrows to gallery
+    function addGalleryNavigation(gallery) {
+        // Remove any existing navigation
+        const existingNavs = gallery.parentNode.querySelectorAll('.gallery-nav');
+        existingNavs.forEach(nav => nav.remove());
+        
+        // Create navigation elements
+        const prevButton = document.createElement('div');
+        prevButton.className = 'gallery-nav prev hidden';
+        prevButton.innerHTML = '&#10094;'; // Left arrow
+        prevButton.onclick = function(e) {
+            e.stopPropagation(); // Prevent closing modal
+            navigateGallery('prev');
+        };
+        
+        const nextButton = document.createElement('div');
+        nextButton.className = 'gallery-nav next hidden';
+        nextButton.innerHTML = '&#10095;'; // Right arrow
+        nextButton.onclick = function(e) {
+            e.stopPropagation(); // Prevent closing modal
+            navigateGallery('next');
+        };
+        
+        // Append navigation to modal body (parent of gallery)
+        gallery.parentNode.appendChild(prevButton);
+        gallery.parentNode.appendChild(nextButton);
     }
 
     // Function to expand gallery images
@@ -216,19 +333,41 @@ document.addEventListener('DOMContentLoaded', function() {
         const gallery = img.parentElement;
         const images = gallery.querySelectorAll('.gallery-image');
         
+        // Make sure we have navigation arrows
+        if (!gallery.parentNode.querySelector('.gallery-nav')) {
+            addGalleryNavigation(gallery);
+        }
+        
+        // Get navigation arrows
+        const prevNav = gallery.parentNode.querySelector('.gallery-nav.prev');
+        const nextNav = gallery.parentNode.querySelector('.gallery-nav.next');
+        
         // If image is already expanded, collapse it
         if (img.classList.contains('active')) {
             img.classList.remove('active');
+            img.style.order = ''; // Reset order
+            
+            // Hide navigation arrows
+            if (prevNav) prevNav.classList.add('hidden');
+            if (nextNav) nextNav.classList.add('hidden');
             return;
         }
         
         // Collapse any other expanded images
         images.forEach(image => {
             image.classList.remove('active');
+            image.style.order = ''; // Reset order
         });
         
-        // Expand clicked image
+        // Expand clicked image and move it to top
         img.classList.add('active');
+        img.style.order = '-1'; // Negative order to place it at the top
+        
+        // Show navigation arrows if we have more than one image
+        if (images.length > 1) {
+            if (prevNav) prevNav.classList.remove('hidden');
+            if (nextNav) nextNav.classList.remove('hidden');
+        }
     };
 
     // Contact form handling (only on contact page)
@@ -252,4 +391,28 @@ document.addEventListener('DOMContentLoaded', function() {
             contactForm.reset();
         });
     }
+    
+    // Handle hash-based filtering for direct links
+    if (portfolioCategories.length > 0 && window.location.hash) {
+        const hash = window.location.hash.substring(1); // Remove the # symbol
+        
+        // Find the category button that matches the hash
+        const targetCategory = Array.from(portfolioCategories).find(
+            cat => cat.getAttribute('data-filter') === hash
+        );
+        
+        // If we found a matching category, click it to activate that filter
+        if (targetCategory) {
+            targetCategory.click();
+            
+            // Scroll to the portfolio section after a short delay
+            setTimeout(() => {
+                const portfolioSection = document.querySelector('.portfolio-header');
+                if (portfolioSection) {
+                    portfolioSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 100);
+        }
+    }
+
 });
