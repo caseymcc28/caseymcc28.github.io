@@ -65,7 +65,7 @@
 }
 
 .about-image img {
-    width: 85%;
+    width: 65%;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
@@ -134,6 +134,8 @@
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    max-width: 600px; /* adjust to taste */
+    margin: 0 auto;   /* center it when only one card exists */
 }
 
 .education-card h3 {

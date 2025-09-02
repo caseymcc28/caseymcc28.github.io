@@ -113,7 +113,10 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    max-width: 600px; /* adjust to taste */
+    margin: 0 auto;   /* center it when only one card exists */
 }
+
 
 .experience-card h2 {
     font-family: var(--serif-font);
@@ -180,7 +183,7 @@
 
 .social-links a:hover {
     transform: translateY(-5px);
-    background-color: #BB113E;
+    background-color: #04294D;
 }
 
 .more-about-link {

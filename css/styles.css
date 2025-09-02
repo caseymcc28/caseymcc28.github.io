@@ -1,10 +1,10 @@
 /* Main Styles for Casey McCollum's Website */
 
 :root {
-    --primary-color: #ED3D6D;
+    --primary-color: #09529A;
     --background-color: #fbfefd;
     --text-color: #1A1423;
-    --accent-text-color: #12355B;
+    --accent-text-color: #04294D;
     --sans-font: 'neue-haas-grotesk-text', sans-serif; /* Updated from 'Inter' */
     --serif-font: 'EB Garamond', serif;
 }

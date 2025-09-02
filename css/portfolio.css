@@ -64,7 +64,7 @@
 }
 
 .portfolio-category:hover {
-    background-color: #BB113E;
+    background-color: #04294D;
 }
 
 .portfolio-category.active {
@@ -160,7 +160,7 @@
 }
 
 .client-type.personal, .modal-client-type.personal {
-    background-color: #2660A4;
+    background-color: #D90368;
 }
 
 .client-type.client, .modal-client-type.client {
